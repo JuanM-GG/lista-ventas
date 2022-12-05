@@ -91,7 +91,11 @@ const TituloEstilo = styled.span`
 // 	}
 // `;
 
-const VentanaEmergente = ({ ventaDetalles, estado, cambiarEstado }) => {
+const VentanaEmergenteDetallesVenta = ({
+	ventaDetalles,
+	estado,
+	cambiarEstado
+}) => {
 	const { productos, total, observacion } = ventaDetalles;
 
 	return (
@@ -135,4 +139,4 @@ const VentanaEmergente = ({ ventaDetalles, estado, cambiarEstado }) => {
 	);
 };
 
-export default VentanaEmergente;
+export default VentanaEmergenteDetallesVenta;

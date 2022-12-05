@@ -19,3 +19,5 @@ export const users = [
 		id: 2
 	}
 ];
+
+console.log(users.length());

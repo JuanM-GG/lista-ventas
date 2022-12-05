@@ -5,57 +5,63 @@ import styled from 'styled-components';
 import VentaRenglon from './VentaRenglon';
 
 // Estilos /////////////////////////////////////////////////////
-const NombreColumnasEstilo = styled.p`
-	width: 100%;
+// Estilo para el nombre de las columnas
+const NombresColumnasEstilo = styled.div`
 	display: flex;
-	justify-content: space-around;
+	border: 4px solid red;
+	/* position: relative; */
+	align-items: center;
+	/* justify-content: space-around; */
+	height: 50px;
+	background-color: lightgray;
+	border: 4px solid red;
 
+	> div {
+		width: 100%;
+		text-align: center;
+	}
 	span {
 		font-weight: bold;
-		font-size: 10px;
+		font-size: 12px;
+		border: 4px solid red;
 	}
 `;
 
-const IdEstilo = styled.span`
-	margin-left: 40px;
-	margin-right: 10px;
-`;
-
-const FechaEstilo = styled.span`
-	margin-left: 30px;
-	margin-right: 10px;
-`;
-
-const StatusEstilo = styled.span`
-	margin-right: 20px;
-`;
+// Constantes
+const NombresColumnas = [
+	'ID',
+	'CLIENTE',
+	'FECHA',
+	'HORA',
+	'TIPO DE VENTA',
+	'REPARTIDOR',
+	'ATIENDE',
+	'TIPO DE PAGO',
+	'STATUS'
+];
 
 // Componente ////////////////////////////////////////////////////
 const ListaVentasRenglones = ({ ventas, mostrarDetallesVenta }) => {
 	// Parte 2. HTML que se renderiza
-	// Si no hay usuarios, regresa el parrafo no hay usuarios
-	if (!ventas.length) return <p>No hay usuarios</p>;
-	// Si hay usuarios regresa los componentes VentanaRenglon por cada venta
-	// No usamos return en map si todo se escribe en una linea
+	// Si no hay ventas, regresa el parrafo no hay ventas
+	if (!ventas.length) return <p>No hay ventas</p>;
+	// Si hay ventas regresar lista de ventas
 	return (
 		<>
 			{/* Nombre de las columnas en la tabla */}
-			<NombreColumnasEstilo>
-				<IdEstilo>ID</IdEstilo>
-				<span>CLIENTE</span>
-				<FechaEstilo>FECHA</FechaEstilo>
-				<span>HORA</span>
-				<span>TIPO DE VENTA</span>
-				<span>REPARTIDOR</span>
-				<span>ATIENDE</span>
-				<span>TIPO DE PAGO</span>
-				<StatusEstilo>STATUS</StatusEstilo>
-			</NombreColumnasEstilo>
+			<NombresColumnasEstilo>
+				{NombresColumnas.map((nombreCampo, index) => (
+					<div key={index}>
+						<span>{nombreCampo}</span>
+					</div>
+				))}
+			</NombresColumnasEstilo>
 
-			{ventas.map(user => (
+			{/* Renglones de la tabla de ventas */}
+			{ventas.map(venta => (
 				<VentaRenglon
-					key={user.ID}
-					user={user}
+					key={venta.ID}
+					venta={venta}
 					mostrarDetallesVenta={mostrarDetallesVenta}
 				/>
 			))}
